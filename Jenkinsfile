@@ -9,7 +9,9 @@ pipeline {
             }
         stage(docker){
             steps{
-                docker.build("test-image")
+                script{
+                    def app = docker.build("test-project")
+                }
             }
         }    
 
