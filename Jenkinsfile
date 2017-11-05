@@ -9,7 +9,7 @@ pipeline {
             }
         stage(docker){
             steps{
-                docker 'build -t test:0.1 .'
+                docker.build("test-image")
             }
         }    
 
