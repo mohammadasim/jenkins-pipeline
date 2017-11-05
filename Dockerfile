@@ -1,12 +1,19 @@
-FROM jenkins
-USER root
+###############################################################################################
+# Dockerfile to build Java and Supervisor installed Container based on Ubuntu 14.04 base image #
+################################################################################################
 
-RUN mkdir -p /tmp/download && \
- curl -L https://get.docker.com/builds/Linux/x86_64/docker-1.13.1.tgz | tar -xz -C /tmp/download && \
- rm -rf /tmp/download/docker/dockerd && \
- mv /tmp/download/docker/docker* /usr/local/bin/ && \
- rm -rf /tmp/download && \
- groupadd -g 999 docker && \
- usermod -aG staff,docker jenkins
+#	Set the base image to Ubuntu version 14.04
+FROM			ubuntu:14.04
 
-user jenkins
+#	File Author/ Maintainer
+MAINTAINER		Mohammad Ayub 
+
+#	Install Java7 and Supervisor
+RUN				apt-get update && \
+    			apt-get upgrade -y && \
+    			apt-get install -y  software-properties-common && \
+    			add-apt-repository ppa:webupd8team/java -y && \
+    			apt-get update && \
+    			echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
+    			apt-get install -y oracle-java7-installer && \
+    			apt-get install -y supervisor	
