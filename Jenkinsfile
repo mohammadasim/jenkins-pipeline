@@ -9,9 +9,6 @@ pipeline {
             }
         stage(docker){
             steps{
-                echo 'Using Docker commands'
-            }
-            steps{
                 docker 'build -t test:0.1 .'
             }
         }    
