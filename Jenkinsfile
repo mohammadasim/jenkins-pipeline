@@ -8,7 +8,7 @@ node {
    }
    stage('Build Container') {
       // Run the maven clean install
-      app = docker.build(test-image)
+      app = docker.build "test-image"
        
    }
    }
